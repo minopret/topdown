@@ -1,15 +1,15 @@
 __all__ = [
-    "Registry",
-    "Scope",
-    "Symbol",
-    "Lexical",
-    "Lexicon",
-    "Rule",
-    "Grammar",
-    "Constituent",
-    "Agenda",
-    "Arc",
-    "Chart",
-    "Parser",
-    "SampleParser"
+    "registry",
+    "scope",
+    "symbol",
+    "lexical",
+    "lexicon",
+    "rule",
+    "grammar",
+    "constituent",
+    "agenda",
+    "arc",
+    "chart",
+    "parser",
+    "sample_parser"
 ]
