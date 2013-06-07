@@ -42,4 +42,4 @@ class SampleParser(Parser):
 
 if __name__ == '__main__':
     SampleParser().test()
-    print()
+    print
