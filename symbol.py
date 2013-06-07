@@ -1,5 +1,8 @@
-from Registry import *
-# from Scope import Scope
+from registry import Registry
+
+
+class Error(Exception):
+    pass
 
 
 class Symbol(object):
@@ -21,7 +24,9 @@ class Symbol(object):
     def get_category(self):
         return self.category
 
-    def deepcopy(self):
+    def deepcopy(self, scope=None):
+        _ = scope
+
         copy = Symbol(self.category, {}, self.scope)
         copy.features = self.features
         copy.feature = self.feature.copy()
@@ -45,7 +50,7 @@ class Symbol(object):
     def reset_feature_code(self, feature, code):
         variable = self.get_feature_variable(feature)
         if variable is None:
-            raise ValueError
+            raise Error
         return self.scope.set_variable_code(variable, code)
 
     def get_scope(self):
@@ -75,7 +80,7 @@ class Symbol(object):
         """
 
         if self.category != symbol.category:
-            raise ValueError('Symbols do not have the same category')
+            raise Error('Symbols do not have the same category')
 
         our_features = self.features & symbol.features
         my_features = self.features & ~symbol.features
@@ -91,7 +96,7 @@ class Symbol(object):
         mine = self.get_feature_code(feature)
         ours = mine & yours
         if ours == 0L:
-            raise ValueError('Symbols do not have the same feature values')
+            raise Error('Symbols do not have the same feature values')
         elif ours == mine:
             pass
         else:

@@ -1,5 +1,5 @@
-from Symbol import Symbol
-from Scope import Scope
+from symbol import Symbol
+from scope import Scope
 
 
 class Lexical(Symbol, Scope):

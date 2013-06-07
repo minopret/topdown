@@ -1,4 +1,4 @@
-from Scope import Scope
+from scope import Scope
 
 
 class Rule(Scope):
@@ -28,7 +28,9 @@ class Rule(Scope):
     def size(self):
         return len(self.get_children())
 
-    def deepcopy(self):
+    def deepcopy(self, scope=None):
+        _ = scope
+
         mother = self.get_mother().deepcopy()
         children = [x.deepcopy() for x in self.get_children()]
 

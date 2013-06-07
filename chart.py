@@ -1,14 +1,17 @@
-from Arc import Arc
-# import Agenda, Grammar, Symbol, Constituent
-
-is_trace_on = 1
+from arc import Arc
+from symbol import Error
 
 
 class Chart(object):
-    def __init__(self, grammar, agenda):
+    def __init__(self, grammar, agenda, logger=None):
         self.data = []
         self.grammar = grammar
         self.agenda = agenda
+        self.logger = logger
+
+    def debug(self, s):
+        if self.logger is not None:
+            self.logger.debug(s)
 
     def extend_arcs(self, constituent):
         for arc in self.data:
@@ -28,25 +31,24 @@ class Chart(object):
                         self.agenda.add_constituent(
                             new_arc.get_mother(), new_arc.get_start(),
                             new_arc.get_end())
-                except ValueError as v:
-                    print(v)
+                except Error as e:
+                    self.debug(e)
 
     def introduce(self, arc):
-        if is_trace_on:
-            print("    An arc can be extended " + str(arc))
+        self.debug("    An arc can be extended " + str(arc))
         self.data.append(arc)
         self.introduce_symbol(arc.next_symbol(), arc.get_end())
 
     def introduce_symbol(self, symbol, position):
         if symbol is None:
             return
-        if is_trace_on:
-            print("Introducing symbol " + str(symbol))
+        self.debug("Introducing symbol " + str(symbol))
         is_first = 1
         for rule in self.grammar.get_rules():
             if rule.get_mother().get_category() == symbol.get_category():
-                if is_trace_on and is_first:
-                    print "    Using the top-down rule,",
-                    print(" new active arcs are added for " + str(symbol))
-                    is_first = 0
+                if is_first:
+                    self.debug(
+                        "    Using the top-down rule,"
+                        " new active arcs are added for " + str(symbol))
+                is_first = 0
                 self.introduce(Arc(rule, 0, position, position))

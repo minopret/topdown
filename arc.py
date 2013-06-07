@@ -1,6 +1,3 @@
-# import Rule, Symbol
-
-
 class Arc(object):
     def __init__(self, rule, progress, start, end):
         self.set_rule(rule.deepcopy())

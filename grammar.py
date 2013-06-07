@@ -1,4 +1,4 @@
-# import Rule, Symbol
+from rule import Rule
 
 
 class Grammar(object):

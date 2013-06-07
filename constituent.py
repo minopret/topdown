@@ -1,6 +1,3 @@
-# import Symbol
-
-
 class Constituent(object):
     def __init__(self, symbol, start, end):
         self.set_symbol(symbol)

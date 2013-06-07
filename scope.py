@@ -1,4 +1,4 @@
-from Registry import Registry
+from registry import Registry
 
 
 class Scope(object):

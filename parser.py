@@ -1,11 +1,14 @@
-from Agenda import Agenda
-from Chart import Chart
+from agenda import Agenda
+from chart import Chart
 
 
 class Parser(object):
+    def __init__(self, logger=None):
+        self.logger = logger
+
     def parse(self, start_symbol, lexicon, grammar, sentence):
-        agenda = Agenda()
-        chart = Chart(grammar, agenda)
+        agenda = Agenda(self.logger)
+        chart = Chart(grammar, agenda, logger=self.logger)
         chart.introduce_symbol(start_symbol, 0)
         position = 0
         while position < len(sentence) or agenda.size() > 0:
