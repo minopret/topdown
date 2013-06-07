@@ -15,8 +15,8 @@ class Scope(object):
         return scope
 
     def add_variable_value(self, name, value):
-        self.variable[name] = self.variable.get(name, OL) |
-        self.registry.encode(value)
+        varname = self.variable.get(name, 0L)
+        self.variable[name] = varname | self.registry.encode(value)
 
     def set_variable(self, name, range):
         self.variable[name] = reduce(

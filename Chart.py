@@ -12,9 +12,11 @@ class Chart(object):
 
     def extend_arcs(self, constituent):
         for arc in self.data:
-            if arc.get_end() == constituent.get_start()
-            and arc.next_symbol().get_category()
-            == constituent.get_symbol().get_category():
+            if (
+                arc.get_end() == constituent.get_start()
+                and arc.next_symbol().get_category()
+                == constituent.get_symbol().get_category()
+            ):
                 new_arc = Arc(
                     arc.get_rule(), arc.get_progress(), arc.get_start(),
                     constituent.get_end())
