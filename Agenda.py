@@ -14,16 +14,13 @@ class Agenda(object):
         self.data.append(Constituent(symbol, start, end))
 
     def add_alternatives(self, list, position):
-        map(
-            lambda symbol, p=position, me=self:
-            me.add_constituent(symbol, p, p+1),
-            list
-        )
+        for symbol in list:
+            self.add_constituent(symbol, position, position + 1)
 
     def next_constituent(self):
         constituent = self.data.pop(0)
         if is_trace_on:
-            print "Entering " + str(constituent)
+            print("Entering " + str(constituent))
         return constituent
 
     def size(self):

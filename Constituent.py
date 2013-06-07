@@ -26,5 +26,5 @@ class Constituent(object):
         return self.end
 
     def __str__(self):
-        return "%s from %d to %d" % (
+        return "{:s} from {:d} to {:d}".format(
             self.get_symbol(), self.get_start(), self.get_end())

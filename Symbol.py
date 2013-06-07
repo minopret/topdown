@@ -101,11 +101,11 @@ class Symbol(object):
         def feature_value_str(symbol, feature):
             code = symbol.get_feature_code(feature)
             if code == -1L:
-                return "%s: %s" % (
+                return "{!s}: {!s}".format(
                     feature, symbol.get_feature_variable(feature))
             else:
-                return "%s: %s" % (feature, symbol.get_feature_values(feature))
+                return "{!s}: {!s}".format(feature, symbol.get_feature_values(feature))
 
-        return "%s%s" % (self.category, map(
+        return "{!s}{!s}".format(self.category, map(
             lambda x, s=self, f=feature_value_str: f(s, x), self.feature.keys()
         ))

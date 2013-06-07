@@ -30,7 +30,7 @@ class Rule(Scope):
 
     def deepcopy(self):
         mother = self.get_mother().deepcopy()
-        children = map(lambda x: x.deepcopy(), self.get_children())
+        children = [x.deepcopy() for x in self.get_children()]
 
         copy = Rule(mother, children)
 

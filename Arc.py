@@ -56,6 +56,6 @@ class Arc(object):
         children2 = reduce(
             lambda x, y: x + " " + str(y),
             self.get_children()[self.get_progress():], "")
-        return "%s ->%s o%s from %d to %d" % (
+        return "{:s} ->{:s} o{:s} from {:d} to {:d}".format(
             self.get_mother(), children1, children2,
             self.get_start(), self.get_end())

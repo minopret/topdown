@@ -28,12 +28,12 @@ class Chart(object):
                         self.agenda.add_constituent(
                             new_arc.get_mother(), new_arc.get_start(),
                             new_arc.get_end())
-                except ValueError, v:
-                    print v
+                except ValueError as v:
+                    print(v)
 
     def introduce(self, arc):
         if is_trace_on:
-            print "    An arc can be extended " + str(arc)
+            print("    An arc can be extended " + str(arc))
         self.data.append(arc)
         self.introduce_symbol(arc.next_symbol(), arc.get_end())
 
@@ -41,12 +41,12 @@ class Chart(object):
         if symbol is None:
             return
         if is_trace_on:
-            print "Introducing symbol " + str(symbol)
+            print("Introducing symbol " + str(symbol))
         is_first = 1
         for rule in self.grammar.get_rules():
             if rule.get_mother().get_category() == symbol.get_category():
                 if is_trace_on and is_first:
-                    print "    Using the top-down rule, new active arcs",
-                    print " are added for " + str(symbol)
+                    print "    Using the top-down rule,",
+                    print(" new active arcs are added for " + str(symbol))
                     is_first = 0
                 self.introduce(Arc(rule, 0, position, position))
